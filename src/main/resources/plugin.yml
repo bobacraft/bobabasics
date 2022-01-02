@@ -9,6 +9,11 @@ commands:
     usage: "/<command> <some> <args> <to> <repeat>"
     permission: bobabasics.echo
 
+  editsign:
+    description: Edit the sign you are looking at
+    usage: "/<command>"
+    permission: bobabasics.editsign
+
   enderchest:
     description: Open a player's enderchest
     usage: "/<command> [player]"
@@ -23,6 +28,11 @@ commands:
     permission: bobabasics.extinguish
     aliases:
       - ext
+
+  fly:
+    description: Change a player's ability to fly
+    usage: "/<command> [player]"
+    permission: bobabasics.fly
 
   gm:
     description: "Change your own or someone else's gamemode (default: survival)"
