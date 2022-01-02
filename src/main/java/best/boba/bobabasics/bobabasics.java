@@ -26,11 +26,17 @@ public class bobabasics extends JavaPlugin {
         this.getCommand("hat").setExecutor(new CommandHat());
         this.getCommand("hat").setTabCompleter(new BlankCompletion());
 
+        this.getCommand("heal").setExecutor(new CommandHeal());
+        this.getCommand("heal").setTabCompleter(new CommandHealCompletion());
+
         this.getCommand("invsee").setExecutor(new CommandInvSee());
         this.getCommand("invsee").setTabCompleter(new OnlyPlayerCompletion());
 
         this.getCommand("repair").setExecutor(new CommandRepair());
         this.getCommand("repair").setTabCompleter(new BlankCompletion());
+
+        this.getCommand("rest").setExecutor(new CommandRest());
+        this.getCommand("rest").setTabCompleter(new CommandRestCompletion());
 
         this.getCommand("speed").setExecutor(new CommandSpeed());
         this.getCommand("speed").setTabCompleter(new CommandSpeedCompletion());

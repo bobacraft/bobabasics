@@ -47,6 +47,12 @@ commands:
   hat:
     description: Put the item in your hand on your head
     usage: "/<command>"
+    permission: bobabasics.hat
+
+  heal:
+    description: Heal and/or feed a player
+    usage: "/<command> (health|hunger|*) [player]"
+    permisson: bobabasics.heal
 
   invsee:
     description: View other players' inventories
@@ -59,6 +65,11 @@ commands:
     description: Repair the item in your hand
     usage: "/<command>"
     permission: bobabasics.repair
+
+  rest:
+    description: Set the time since a player last slept to prevent phantoms spawning
+    usage: "/<command> [time: int] [player]"
+    permission: bobabasics.rest
 
   speed:
     description: Change your flight or walk speed

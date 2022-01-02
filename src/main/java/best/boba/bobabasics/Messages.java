@@ -9,6 +9,7 @@ public class Messages {
     public static final String playerIsNotCached = ChatColor.RED + "Could not find a player named %s; have they logged on before?";
     public static final String notEnoughArguments = ChatColor.RED + "Not enough arguments.";
     public static final String tooManyArguments = ChatColor.RED + "Too many arguments.";
+    public static final String invalidArgument = ChatColor.RED + "Invalid option for argument named %s: %s";
     public static final String invalidArgumentType = ChatColor.RED + "Invalid %s for argument named %s: %s";
     public static final String noPermission = ChatColor.RED + "You do not have permission to run this command.";
 }

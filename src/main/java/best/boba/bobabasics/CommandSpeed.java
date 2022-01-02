@@ -41,7 +41,7 @@ public class CommandSpeed implements CommandExecutor {
             }
 
             if ((speed < -1) || (speed > 1)) { // if it's out of the range -1 to 1
-                sender.sendMessage(ChatColor.RED + "Speed must be between -1 and 1. Default is 0.2");
+                sender.sendMessage(ChatColor.RED + "Speed must be between -1 and 1.");
                 return false;
             }
         }
