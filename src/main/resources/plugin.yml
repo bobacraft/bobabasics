@@ -1,0 +1,69 @@
+name: bobabasics
+version: 1.0
+author: bbaovanc
+main: best.boba.bobabasics.bobabasics
+api-version: 1.17
+commands:
+  echo:
+    description: Echo something back
+    usage: "/<command> <some> <args> <to> <repeat>"
+    permission: bobabasics.echo
+
+  enderchest:
+    description: Open a player's enderchest
+    usage: "/<command> [player]"
+    permission: bobabasics.enderchest
+    aliases:
+      - echest
+      - ec
+
+  extinguish:
+    description: Extinguish a fire on a player
+    usage: "/<command> [player]"
+    permission: bobabasics.extinguish
+    aliases:
+      - ext
+
+  gm:
+    description: "Change your own or someone else's gamemode (default: survival)"
+    usage: "/<command> [player]"
+    permission: bobabasics.gamemode
+    aliases:
+      - gmc
+      - gms
+      - gma
+      - gmsp
+
+  hat:
+    description: Put the item in your hand on your head
+    usage: "/<command>"
+
+  invsee:
+    description: View other players' inventories
+    usage: "/<command> <player>"
+    permission: bobabasics.invsee
+    aliases:
+      - inv
+
+  repair:
+    description: Repair the item in your hand
+    usage: "/<command>"
+    permission: bobabasics.repair
+
+  speed:
+    description: Change your flight or walk speed
+    usage: "/<command> (<speed: float>|reset) [fly|walk|*] [player]"
+    permission: bobabasics.speed
+
+  tpall:
+    description: Teleport everyone on the server to someone
+    usage: "/<command> [player]"
+    permission: bobabasics.tpall
+
+  workbench:
+    description: Open a crafting table or other similar interfaces for someone
+    usage: "/<command> (anvil|cartography_table|enchanting_table|grindstone|loom|crafting_table) [player]"
+    permission: bobabasics.workbench
+    aliases:
+      - table
+      - wb
