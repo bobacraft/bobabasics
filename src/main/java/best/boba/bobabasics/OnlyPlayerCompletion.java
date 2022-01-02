@@ -14,11 +14,6 @@ public class OnlyPlayerCompletion implements TabCompleter {
      * TabCompleter which just does a single argument with a list of online
      * players. Meant for commands that take a single argument which is a
      * player name.
-     * @param sender
-     * @param command
-     * @param alias
-     * @param args
-     * @return
      */
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {

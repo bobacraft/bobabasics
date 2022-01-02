@@ -39,6 +39,7 @@ public class CommandEnderchest implements CommandExecutor {
                 target = offlineTarget.getPlayer();
             }
         }
+        assert target != null;
         chest = target.getEnderChest();
 
         player.openInventory(chest);

@@ -12,7 +12,7 @@ import java.util.List;
 public class CommandWorkbenchCompletion implements TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        List<String> completion = new ArrayList<String>();
+        List<String> completion = new ArrayList<>();
 
         switch (args.length) {
             case 1:

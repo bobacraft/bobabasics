@@ -36,45 +36,40 @@ public class CommandWorkbench implements CommandExecutor {
         }
 
         switch (args[0]) {
-            case "anvil":
+            case "anvil" -> {
                 target.openAnvil(null, true);
                 sender.sendMessage(ChatColor.GREEN +
-                                   String.format("Opened an anvil for %s.", target.getName()));
-                break;
-
-            case "cartography_table":
+                        String.format("Opened an anvil for %s.", target.getName()));
+            }
+            case "cartography_table" -> {
                 target.openCartographyTable(null, true);
                 sender.sendMessage(ChatColor.GREEN +
                         String.format("Opened a cartography table for %s.", target.getName()));
-                break;
-
-            case "enchanting_table":
+            }
+            case "enchanting_table" -> {
                 target.openEnchanting(null, true);
                 sender.sendMessage(ChatColor.GREEN +
                         String.format("Opened an enchanting table for %s.", target.getName()));
-                break;
-
-            case "grindstone":
+            }
+            case "grindstone" -> {
                 target.openGrindstone(null, true);
                 sender.sendMessage(ChatColor.GREEN +
                         String.format("Opened a grindstone for %s.", target.getName()));
-                break;
-
-            case "loom":
+            }
+            case "loom" -> {
                 target.openLoom(null, true);
                 sender.sendMessage(ChatColor.GREEN +
                         String.format("Opened a loom for %s.", target.getName()));
-                break;
-
-            case "crafting_table":
+            }
+            case "crafting_table" -> {
                 target.openWorkbench(null, true);
                 sender.sendMessage(ChatColor.GREEN +
                         String.format("Opened a crafting table for %s.", target.getName()));
-                break;
-
-            default:
+            }
+            default -> {
                 sender.sendMessage(ChatColor.RED + "Pick a valid menu.");
                 return false;
+            }
         }
 
         return true;

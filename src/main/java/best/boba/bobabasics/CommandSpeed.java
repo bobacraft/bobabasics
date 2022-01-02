@@ -47,6 +47,7 @@ public class CommandSpeed implements CommandExecutor {
         }
 
         // Figure out the target player
+        assert sender instanceof Player;
         Player player = (Player) sender;
         if (args.length >= 3) {
             Player targetPlayer = sender.getServer().getPlayer(args[2]);

@@ -21,30 +21,27 @@ public class CommandGamemode implements CommandExecutor {
         GameMode gamemode = null;
         Permission permission = null;
         switch (label) {
-            case "gmsp":
+            case "gmsp" -> {
                 gamemode = GameMode.SPECTATOR;
                 permission = new Permission("bobabasics.gamemode.spectator");
-                break;
-
-            case "gmc":
+            }
+            case "gmc" -> {
                 gamemode = GameMode.CREATIVE;
                 permission = new Permission("bobabasics.gamemode.creative");
-                break;
-
-            case "gma":
+            }
+            case "gma" -> {
                 gamemode = GameMode.ADVENTURE;
                 permission = new Permission("bobabasics.gamemode.adventure");
-                break;
-
-            case "gms":
+            }
+            case "gms" -> {
                 gamemode = GameMode.SURVIVAL;
                 permission = new Permission("bobabasics.gamemode.survival");
-                break;
-
-            case "gm":
+            }
+            case "gm" -> {
                 sender.sendMessage(ChatColor.RED + "Please use one of the gamemode specific commands:");
                 sender.sendMessage(ChatColor.RED + "/(gmc|gms|gma|gmsp)");
                 return false;
+            }
         }
 
         Server server = sender.getServer();
@@ -62,11 +59,13 @@ public class CommandGamemode implements CommandExecutor {
             return false;
         }
 
+        assert permission != null;
         if (!sender.hasPermission(permission)) {
             sender.sendMessage(Messages.noPermission);
             return false;
         }
 
+        assert gamemode != null;
         target.setGameMode(gamemode);
         sender.sendMessage(ChatColor.GREEN +
                            String.format("Changed %s's gamemode to %s", target.getName(), gamemode));

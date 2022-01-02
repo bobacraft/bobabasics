@@ -40,6 +40,7 @@ public class CommandInvSee implements CommandExecutor {
             target = offlineTarget.getPlayer();
         }
 
+        assert target != null;
         Inventory inv = target.getInventory();
         player.openInventory(inv);
         if (isOnline) {

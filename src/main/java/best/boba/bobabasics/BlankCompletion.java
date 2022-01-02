@@ -13,15 +13,9 @@ public class BlankCompletion implements TabCompleter {
     /**
      * TabCompleter which just disables tab completion for a command. Meant for
      * commands that don't take any arguments.
-     * @param sender
-     * @param command
-     * @param alias
-     * @param args
-     * @return
      */
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        List<String> completion = new ArrayList<String>();
-        return completion;
+        return new ArrayList<>();
     }
 }

@@ -35,6 +35,7 @@ public class CommandExtinguish implements CommandExecutor {
             }
         }
 
+        assert target != null;
         target.setFireTicks(0);
         sender.sendMessage(ChatColor.GREEN + String.format("Extinguished %s", target.getName()));
         return true;
