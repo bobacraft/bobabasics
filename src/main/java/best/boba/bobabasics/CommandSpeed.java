@@ -1,5 +1,6 @@
 package best.boba.bobabasics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,11 +11,6 @@ import org.jetbrains.annotations.NotNull;
 public class CommandSpeed implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player) && (args.length < 3)) {
-            sender.sendMessage(Messages.needsToProvidePlayer);
-            return false;
-        }
-
         // Immediately error if there's too many arguments
         if (args.length > 3) {
             sender.sendMessage(Messages.tooManyArguments);
@@ -47,15 +43,20 @@ public class CommandSpeed implements CommandExecutor {
         }
 
         // Figure out the target player
-        assert sender instanceof Player;
-        Player player = (Player) sender;
+        Player target;
         if (args.length >= 3) {
-            Player targetPlayer = sender.getServer().getPlayer(args[2]);
-            if (targetPlayer == null) {
+            target = Bukkit.getPlayer(args[2]);
+            if (target == null) {
                 sender.sendMessage(Messages.playerIsOffline);
                 return false;
             }
-            player = targetPlayer;
+        } else {
+            if (sender instanceof Player) {
+                target = (Player) sender;
+            } else {
+                sender.sendMessage(Messages.needsToProvidePlayer);
+                return false;
+            }
         }
 
         // Figure out whether to set flight or walking speed
@@ -77,7 +78,7 @@ public class CommandSpeed implements CommandExecutor {
                 }
             }
         } else {
-            if (player.isFlying()) {
+            if (target.isFlying()) {
                 setFly = true;
             } else {
                 setWalk = true;
@@ -86,24 +87,24 @@ public class CommandSpeed implements CommandExecutor {
 
         // Actually set the speed
         if (setFly) {
-            float previousSpeed = player.getFlySpeed();
+            float previousSpeed = target.getFlySpeed();
             if (defaultSpeed) {
                 speed = 0.1f;
             }
-            player.setFlySpeed(speed);
+            target.setFlySpeed(speed);
             sender.sendMessage(ChatColor.GREEN +
                     String.format("Set %s's flight speed from %s to %s",
-                            player.getName(), previousSpeed, speed));
+                            target.getName(), previousSpeed, speed));
         }
         if (setWalk) {
-            float previousSpeed = player.getWalkSpeed();
+            float previousSpeed = target.getWalkSpeed();
             if (defaultSpeed) {
                 speed = 0.2f;
             }
-            player.setWalkSpeed(speed);
+            target.setWalkSpeed(speed);
             sender.sendMessage(ChatColor.GREEN +
                     String.format("Set %s's walking speed from %s to %s",
-                            player.getName(), previousSpeed, speed));
+                            target.getName(), previousSpeed, speed));
         }
         return true;
 

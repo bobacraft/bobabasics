@@ -2,7 +2,6 @@ package best.boba.bobabasics;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Server;
 import org.bukkit.Statistic;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -33,19 +32,26 @@ public class CommandRest implements CommandExecutor {
             }
         }
 
-        Player player = (Player) sender;
+        Player target;
         if (args.length >= 2) {
-            player = Bukkit.getPlayer(args[1]);
-            if (player == null) {
+            target = Bukkit.getPlayer(args[1]);
+            if (target == null) {
                 sender.sendMessage(Messages.playerIsOffline);
                 return false;
             }
+        } else {
+            if (sender instanceof Player) {
+                target = (Player) sender;
+            } else {
+                sender.sendMessage(Messages.needsToProvidePlayer);
+                return false;
+            }
         }
-        int previousRest = player.getStatistic(Statistic.TIME_SINCE_REST);
+        int previousRest = target.getStatistic(Statistic.TIME_SINCE_REST);
 
-        player.setStatistic(Statistic.TIME_SINCE_REST, newRest);
+        target.setStatistic(Statistic.TIME_SINCE_REST, newRest);
         sender.sendMessage(ChatColor.GREEN +
-                           String.format("Set %s's time since rest statistic from %s to %s", player.getName(), previousRest, newRest));
+                           String.format("Set %s's time since rest statistic from %s to %s", target.getName(), previousRest, newRest));
         return true;
     }
 }

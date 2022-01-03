@@ -16,11 +16,9 @@ public class CommandExtinguish implements CommandExecutor {
             return false;
         }
 
-        if (!(sender instanceof Player)) {
-            if (args.length < 1) {
-                sender.sendMessage(Messages.needsToProvidePlayer);
-                return false;
-            }
+        if (!(sender instanceof Player) && (args.length < 1)) {
+            sender.sendMessage(Messages.needsToProvidePlayer);
+            return false;
         }
 
         Player target;
@@ -31,12 +29,7 @@ public class CommandExtinguish implements CommandExecutor {
                 return false;
             }
         } else {
-            if (sender instanceof Player) {
-                target = (Player) sender;
-            } else {
-                sender.sendMessage(Messages.needsToProvidePlayer);
-                return false;
-            }
+            target = (Player) sender;
         }
 
         target.setFireTicks(0);

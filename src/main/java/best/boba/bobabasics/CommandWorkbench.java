@@ -11,11 +11,6 @@ import org.jetbrains.annotations.NotNull;
 public class CommandWorkbench implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player player)) {
-            sender.sendMessage(Messages.senderIsNotPlayer);
-            return false;
-        }
-
         if (args.length > 2) {
             sender.sendMessage(Messages.tooManyArguments);
             return false;
@@ -26,11 +21,18 @@ public class CommandWorkbench implements CommandExecutor {
             return false;
         }
 
-        Player target = player;
+        Player target;
         if (args.length >= 2) {
             target = Bukkit.getPlayer(args[1]);
             if (target == null) {
                 sender.sendMessage(Messages.playerIsOffline);
+                return false;
+            }
+        } else {
+            if (sender instanceof Player) {
+                target = (Player) sender;
+            } else {
+                sender.sendMessage(Messages.needsToProvidePlayer);
                 return false;
             }
         }
