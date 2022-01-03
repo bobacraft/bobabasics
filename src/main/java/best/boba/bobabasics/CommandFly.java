@@ -1,7 +1,7 @@
 package best.boba.bobabasics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,22 +16,26 @@ public class CommandFly implements CommandExecutor {
             return false;
         }
 
-        Server server = sender.getServer();
-        Player player;
+        Player target;
         if (args.length >= 1) {
-            player = server.getPlayer(args[0]);
-            if (player == null) {
+            target = Bukkit.getPlayer(args[0]);
+            if (target == null) {
                 sender.sendMessage(Messages.playerIsOffline);
                 return false;
             }
         } else {
-            player = (Player) sender;
+            if (sender instanceof Player) {
+                target = (Player) sender;
+            } else {
+                sender.sendMessage(Messages.needsToProvidePlayer);
+                return false;
+            }
         }
 
-        boolean shouldFly = !player.getAllowFlight();
-        player.setAllowFlight(shouldFly);
+        boolean shouldFly = !target.getAllowFlight();
+        target.setAllowFlight(shouldFly);
         sender.sendMessage(ChatColor.GREEN +
-                           String.format("Set %s's ability to fly to %s", player.getName(), shouldFly));
+                           String.format("Set %s's ability to fly to %s", target.getName(), shouldFly));
         return true;
     }
 }

@@ -23,6 +23,7 @@ public class CommandWorkbenchCompletion implements TabCompleter {
                 completion.add("loom");
                 completion.add("crafting_table");
                 break;
+
             case 2:
                 return null;
         }

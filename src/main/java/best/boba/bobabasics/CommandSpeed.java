@@ -87,25 +87,23 @@ public class CommandSpeed implements CommandExecutor {
         // Actually set the speed
         if (setFly) {
             float previousSpeed = player.getFlySpeed();
-            String speedName = "flight";
             if (defaultSpeed) {
                 speed = 0.1f;
             }
             player.setFlySpeed(speed);
             sender.sendMessage(ChatColor.GREEN +
-                    String.format("Set %s's %s speed from %s to %s",
-                            player.getName(), speedName, previousSpeed, speed));
+                    String.format("Set %s's flight speed from %s to %s",
+                            player.getName(), previousSpeed, speed));
         }
         if (setWalk) {
             float previousSpeed = player.getWalkSpeed();
-            String speedName = "walking";
             if (defaultSpeed) {
                 speed = 0.2f;
             }
             player.setWalkSpeed(speed);
             sender.sendMessage(ChatColor.GREEN +
-                    String.format("Set %s's %s speed from %s to %s",
-                            player.getName(), speedName, previousSpeed, speed));
+                    String.format("Set %s's walking speed from %s to %s",
+                            player.getName(), previousSpeed, speed));
         }
         return true;
 

@@ -20,9 +20,14 @@ public class CommandEditsign implements CommandExecutor {
             return false;
         }
 
-        RayTraceResult trace = player.rayTraceBlocks(16, FluidCollisionMode.NEVER);
+        if (args.length > 0) {
+            sender.sendMessage(Messages.tooManyArguments);
+            return false;
+        }
+
+        RayTraceResult trace = player.rayTraceBlocks(64, FluidCollisionMode.NEVER);
         if (trace == null) {
-            sender.sendMessage(ChatColor.RED + "You aren't looking at a block.");
+            sender.sendMessage(ChatColor.RED + "You aren't looking at a nearby block.");
             return false;
         }
         Block traceBlock = trace.getHitBlock();

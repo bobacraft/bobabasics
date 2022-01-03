@@ -1,5 +1,6 @@
 package best.boba.bobabasics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -36,27 +37,33 @@ public class CommandHeal implements CommandExecutor {
             }
         }
 
-        Server server = sender.getServer();
-        Player player = (Player) sender;
+        Player target;
         if (args.length >= 2) {
-            player = server.getPlayer(args[1]);
-            if (player == null) {
+            target = Bukkit.getPlayer(args[0]);
+            if (target == null) {
                 sender.sendMessage(Messages.playerIsOffline);
+                return false;
+            }
+        } else {
+            if (sender instanceof Player) {
+                target = (Player) sender;
+            } else {
+                sender.sendMessage(Messages.needsToProvidePlayer);
                 return false;
             }
         }
 
         if (setHealth) {
-            double previousHealth = player.getHealth();
-            player.setHealth(20);
+            double previousHealth = target.getHealth();
+            target.setHealth(20);
             sender.sendMessage(ChatColor.GREEN +
-                               String.format("Set %s's health from %s to %s.", player.getName(), previousHealth, 20));
+                               String.format("Set %s's health from %s to %s.", target.getName(), previousHealth, 20));
         }
         if (setHunger) {
-            int previousHunger = player.getFoodLevel();
-            player.setFoodLevel(20);
+            int previousHunger = target.getFoodLevel();
+            target.setFoodLevel(20);
             sender.sendMessage(ChatColor.GREEN +
-                    String.format("Set %s's hunger from %s to %s.", player.getName(), previousHunger, 20));
+                    String.format("Set %s's hunger from %s to %s.", target.getName(), previousHunger, 20));
         }
 
         return true;

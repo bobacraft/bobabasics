@@ -1,5 +1,6 @@
 package best.boba.bobabasics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Server;
@@ -44,19 +45,20 @@ public class CommandGamemode implements CommandExecutor {
             }
         }
 
-        Server server = sender.getServer();
         Player target;
         if (args.length >= 1) {
-            target = server.getPlayer(args[0]);
+            target = Bukkit.getPlayer(args[0]);
             if (target == null) {
                 sender.sendMessage(Messages.playerIsOffline);
                 return false;
             }
-        } else if (sender instanceof Player player) {
-            target = player;
         } else {
-            sender.sendMessage(Messages.needsToProvidePlayer);
-            return false;
+            if (sender instanceof Player) {
+                target = (Player) sender;
+            } else {
+                sender.sendMessage(Messages.needsToProvidePlayer);
+                return false;
+            }
         }
 
         assert permission != null;
@@ -65,7 +67,6 @@ public class CommandGamemode implements CommandExecutor {
             return false;
         }
 
-        assert gamemode != null;
         target.setGameMode(gamemode);
         sender.sendMessage(ChatColor.GREEN +
                            String.format("Changed %s's gamemode to %s", target.getName(), gamemode));

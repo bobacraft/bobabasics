@@ -18,11 +18,13 @@ public class CommandSpeedCompletion implements TabCompleter {
                 completion.add("<speed>");
                 completion.add("reset");
                 break;
+
             case 2:
                 completion.add("fly");
                 completion.add("walk");
                 completion.add("*");
                 break;
+
             case 3:
                 return null; // use player names for completion
         }

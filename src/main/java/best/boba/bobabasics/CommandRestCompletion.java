@@ -18,6 +18,7 @@ public class CommandRestCompletion implements TabCompleter {
             case 1:
                 completion.add("0");
                 break;
+
             case 2:
                 return null;
         }

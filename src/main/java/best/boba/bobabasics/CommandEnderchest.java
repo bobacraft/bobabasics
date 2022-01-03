@@ -1,8 +1,8 @@
 package best.boba.bobabasics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,23 +23,20 @@ public class CommandEnderchest implements CommandExecutor {
             return false;
         }
 
-        Server server = sender.getServer();
-        Player target;
+        Player target = player;
         Inventory chest;
-        if (args.length == 0) {
-            target = player;
-        } else {
-            target = server.getPlayer(args[0]);
+        if (args.length >= 1) {
+            target = Bukkit.getPlayer(args[0]);
             if (target == null) {
-                OfflinePlayer offlineTarget = server.getOfflinePlayerIfCached(args[0]);
+                OfflinePlayer offlineTarget = Bukkit.getOfflinePlayerIfCached(args[0]);
                 if (offlineTarget == null) {
                     sender.sendMessage(ChatColor.RED + String.format(Messages.playerIsNotCached, args[0]));
                     return false;
                 }
                 target = offlineTarget.getPlayer();
+                assert target != null;
             }
         }
-        assert target != null;
         chest = target.getEnderChest();
 
         player.openInventory(chest);

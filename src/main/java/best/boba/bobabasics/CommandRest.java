@@ -1,5 +1,6 @@
 package best.boba.bobabasics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.Statistic;
@@ -32,10 +33,9 @@ public class CommandRest implements CommandExecutor {
             }
         }
 
-        Server server = sender.getServer();
         Player player = (Player) sender;
         if (args.length >= 2) {
-            player = server.getPlayer(args[1]);
+            player = Bukkit.getPlayer(args[1]);
             if (player == null) {
                 sender.sendMessage(Messages.playerIsOffline);
                 return false;

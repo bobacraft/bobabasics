@@ -1,5 +1,6 @@
 package best.boba.bobabasics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
@@ -27,20 +28,19 @@ public class CommandInvSee implements CommandExecutor {
             return false;
         }
 
-        Server server = sender.getServer();
-        Player target = server.getPlayer(args[0]);
         boolean isOnline = true;
+        Player target = Bukkit.getPlayer(args[0]);
         if (target == null) {
             isOnline = false;
-            OfflinePlayer offlineTarget = server.getOfflinePlayerIfCached(args[0]);
+            OfflinePlayer offlineTarget = Bukkit.getOfflinePlayerIfCached(args[0]);
             if (offlineTarget == null) {
-                sender.sendMessage(String.format(Messages.playerIsNotCached, args[0]));
+                sender.sendMessage(ChatColor.RED + String.format(Messages.playerIsNotCached, args[0]));
                 return false;
             }
             target = offlineTarget.getPlayer();
+            assert target != null;
         }
 
-        assert target != null;
         Inventory inv = target.getInventory();
         player.openInventory(inv);
         if (isOnline) {
