@@ -1,9 +1,9 @@
 plugins {
-    id 'java'
+    java
 }
 
-group 'best.boba'
-version '1.0'
+group = "best.boba"
+version = "1.0"
 
 repositories {
     mavenCentral()
@@ -13,8 +13,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
 }
 
@@ -22,6 +22,8 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
-test {
-    useJUnitPlatform()
+tasks {
+    test {
+        useJUnitPlatform()
+    }
 }
